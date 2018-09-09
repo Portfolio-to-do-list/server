@@ -48,10 +48,14 @@ module.exports = {
         })
         newUser.save()
         .then(success =>{
-            res.redirect('http://localhost:8080/login/')
+            res.status(200).json({
+                message: 'Berhasil Daftar'
+            })
         })
         .catch(err =>{
-            res.redirect('http://localhost:8080/register/')
+            res.status(401).json({
+                message: err.errors.email.message
+            })
         })
     },
 
