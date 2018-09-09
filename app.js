@@ -7,7 +7,7 @@ const app = express()
 const db = mongoose.connection
 const port = process.env.PORT || 3000
 
-mongoose.connect('mongodb://minzard:minzard1@ds249992.mlab.com:49992/to-do-fancy')
+mongoose.connect(`mongodb://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@${process.env.MONGODBSERVER}`)
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', function(){
     console.log(`Database connected`)
