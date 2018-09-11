@@ -10,11 +10,13 @@ module.exports = {
         User.findOne({
             email: req.body.email,
             password: hashPassword(req.body.email, req.body.password)
-        }).populate('TodoId')
-        .then(user =>{
-            dataUser = user
-            if(user){
-                return sign(user)
+        })
+        .then(data =>{
+            // console.log(data)
+            dataUser = data
+            if(data){
+                // console.log(data)
+                return sign(data)
                 
             }else{
                 res.status(404).json({
@@ -23,7 +25,6 @@ module.exports = {
             }
         })
         .then(token =>{
-            req.session.token = token
             if(token){
                 res.status(200).json({
                     message: 'berhasil Login',
